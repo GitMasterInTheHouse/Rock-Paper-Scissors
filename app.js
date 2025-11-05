@@ -52,4 +52,12 @@ function playRound() {
   }
 }
 
-playRound();
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    playRound();
+  }
+
+  console.log(`The final score is: ${humanScore}:${computerScore}`);
+}
+
+playGame();
