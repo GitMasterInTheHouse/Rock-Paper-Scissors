@@ -2,6 +2,17 @@ let humanScore = 0;
 let computerScore = 0;
 
 const choiceBtns = document.querySelectorAll(".btn");
+const resultContainer = document.querySelector("#results");
+
+const playerText = document.createElement("p");
+const computerText = document.createElement("p");
+const resultText = document.createElement("p");
+const scoreText = document.createElement("p");
+
+resultContainer.appendChild(playerText);
+resultContainer.appendChild(computerText);
+resultContainer.appendChild(resultText);
+resultContainer.appendChild(scoreText);
 
 choiceBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -27,30 +38,32 @@ function playRound(playerChoice) {
   let humanChoice = playerChoice;
   let computerChoice = getComputerChoice().toLowerCase();
 
-  console.log(humanChoice);
-  console.log(computerChoice);
+  playerText.textContent = playerChoice;
+  computerText.textContent = computerChoice;
 
   if (humanChoice === computerChoice) {
-    console.log("It's a tie!");
+    resultText.textContent = "It's a tie!";
   } else if (humanChoice === "paper" && computerChoice === "rock") {
-    console.log("You win!");
+    resultText.textContent = "You win!";
     humanScore++;
   } else if (humanChoice === "rock" && computerChoice === "paper") {
-    console.log("The computer wins!");
+    resultText.textContent = "The computer wins!";
     computerScore++;
   } else if (humanChoice === "scissors" && computerChoice === "paper") {
-    console.log("You win!");
+    resultText.textContent = "You win!";
     humanScore++;
   } else if (humanChoice === "paper" && computerChoice === "scissors") {
-    console.log("The computer wins!");
+    resultText.textContent = "The computer wins!";
     computerScore++;
   } else if (humanChoice === "rock" && computerChoice === "scissors") {
-    console.log("You win!");
+    resultText.textContent = "You win!";
     humanScore++;
   } else if (humanChoice === "scissors" && computerChoice === "rock") {
-    console.log("The computer wins!");
+    resultText.textContent = "The computer wins!";
     computerScore++;
   } else {
-    console.log("Something went wrong. Winner undecided!");
+    resultText.textContent = "An error has occured. No winner decided.";
   }
+
+  scoreText.textContent = `The score is ${humanScore}:${computerScore}`;
 }
