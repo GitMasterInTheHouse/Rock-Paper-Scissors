@@ -1,6 +1,14 @@
 let humanScore = 0;
 let computerScore = 0;
 
+const choiceBtns = document.querySelectorAll(".btn");
+
+choiceBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    playRound(e.target.id);
+  });
+});
+
 function getComputerChoice() {
   let randNum = Math.floor(Math.random() * 3) + 1;
   switch (randNum) {
@@ -15,13 +23,8 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  let humanChoice = prompt("Enter your choice: ");
-  return humanChoice;
-}
-
-function playRound() {
-  let humanChoice = getHumanChoice().toLowerCase();
+function playRound(playerChoice) {
+  let humanChoice = playerChoice;
   let computerChoice = getComputerChoice().toLowerCase();
 
   console.log(humanChoice);
@@ -51,13 +54,3 @@ function playRound() {
     console.log("Something went wrong. Winner undecided!");
   }
 }
-
-function playGame() {
-  for (let i = 0; i < 5; i++) {
-    playRound();
-  }
-
-  console.log(`The final score is: ${humanScore}:${computerScore}`);
-}
-
-playGame();
