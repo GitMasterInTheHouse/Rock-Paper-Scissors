@@ -9,10 +9,10 @@ const computerText = document.createElement("p");
 const resultText = document.createElement("p");
 const scoreText = document.createElement("p");
 
+resultContainer.appendChild(scoreText);
 resultContainer.appendChild(playerText);
 resultContainer.appendChild(computerText);
 resultContainer.appendChild(resultText);
-resultContainer.appendChild(scoreText);
 
 choiceBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -65,12 +65,14 @@ function playRound(playerChoice) {
   } else {
     resultText.textContent = "An error has occured. No winner decided.";
   }
-
+  scoreText.textContent = `current score is ${humanScore}:${computerScore} (You vs. Computer)`;
   if (humanScore >= 5 || computerScore >= 5) {
     scoreText.textContent = `The score is ${humanScore}:${computerScore}`;
+    resultText.textContent =
+      humanScore > computerScore
+        ? "You won the game!"
+        : "The computer won the game!";
     humanScore = 0;
     computerScore = 0;
-    resultText.textContent =
-      humanScore > computerScore ? "You win!" : "The computer wins";
   }
 }
