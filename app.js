@@ -35,6 +35,7 @@ function getComputerChoice() {
 }
 
 function playRound(playerChoice) {
+  scoreText.textContent = "";
   let humanChoice = playerChoice;
   let computerChoice = getComputerChoice().toLowerCase();
 
@@ -65,5 +66,11 @@ function playRound(playerChoice) {
     resultText.textContent = "An error has occured. No winner decided.";
   }
 
-  scoreText.textContent = `The score is ${humanScore}:${computerScore}`;
+  if (humanScore >= 5 || computerScore >= 5) {
+    scoreText.textContent = `The score is ${humanScore}:${computerScore}`;
+    humanScore = 0;
+    computerScore = 0;
+    resultText.textContent =
+      humanScore > computerScore ? "You win!" : "The computer wins";
+  }
 }
